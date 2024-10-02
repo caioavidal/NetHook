@@ -27,7 +27,7 @@ void HookSession::Hook(DWORD hookAddress, int hookLength, unsigned long external
     //allocate memory for jmp, call and original code
     int functionSize = hookLength + 10;
     auto ptr = static_cast<byte*>(VirtualAlloc(
-        NULL,
+        nullptr,
         functionSize,
         MEM_COMMIT | MEM_RESERVE,
         PAGE_EXECUTE_READWRITE));
