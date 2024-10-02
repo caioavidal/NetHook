@@ -44,9 +44,7 @@ public abstract class PipeServer
                             _server.Disconnect();
                             continue;
                         }
-
-
-                    //Ao chamar o Read, o servidor fica na espera até ter uma informação disponível e seguidamente faz a escrita da mesma no buffer
+                    
                     var bytesCount = _server.Read(buffer, 0, buffer.Length);
 
                     if (!_server.IsConnected || bytesCount <= 0) continue;
