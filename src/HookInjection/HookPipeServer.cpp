@@ -70,7 +70,7 @@ DWORD WINAPI HookPipeServer::ListenToPipe(LPVOID lpParam)
         unsigned long externalCallbackPointer;
         memcpy(&externalCallbackPointer, &buffer[5], 8);
 
-        HookSession::Hook(hookAddress, hookLength, externalCallbackPointer);
+        HookSession::Hook(hookAddress, hookLength, &externalCallbackPointer);
     }
 }
 

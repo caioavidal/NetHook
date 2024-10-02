@@ -4,5 +4,5 @@
 class HookSession
 {
 public:
-    static void Hook(DWORD hookAddress, int hookLength, unsigned long externalCallbackPointer);
+    static void Hook(DWORD hookAddress, int hookLength, unsigned long* externalCallbackPointer);
 };
