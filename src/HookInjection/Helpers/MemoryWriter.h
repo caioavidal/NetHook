@@ -1,5 +1,5 @@
 #pragma once
-#include "HookPipeServer.h"
+#include "Windows.h"
 
 class MemoryWriter
 {

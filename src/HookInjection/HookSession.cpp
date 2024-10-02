@@ -1,9 +1,8 @@
 #include "HookSession.h"
-
 #include "CallbackHook.h"
-#include "HookHelper.h"
-#include "MemoryWriter.h"
+#include "Helpers/MemoryWriter.h"
 #include "OpCodeEnum.h"
+#include "Helpers/HookHelper.h"
 
 void HookSession::Hook(DWORD hookAddress, int hookLength, unsigned long externalCallbackPointer)
 {
