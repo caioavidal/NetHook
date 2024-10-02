@@ -1,4 +1,5 @@
 #include "CallbackHook.h"
+#include "HookPipeServer.h"
 
 int* CallbackHook::CallbackCodePtr = nullptr;
 
