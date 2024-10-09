@@ -1,4 +1,7 @@
 #include "HookSession.h"
+
+#include <vector>
+
 #include "CallbackHook.h"
 #include "Helpers/MemoryWriter.h"
 #include "OpCodeEnum.h"
@@ -10,13 +13,11 @@ void HookSession::Hook(DWORD hookAddress, int hookLength, unsigned long* externa
 
     auto toHook = (void*)hookAddress;
     VirtualProtect(toHook, hookLength, PAGE_EXECUTE_READWRITE, &curProtection);
+    
+    byte* originalCode = new byte[hookLength];
 
-    auto originalCode = new byte[hookLength];
-
-    for (int i = 0; i < hookLength; i++)
-    {
-        originalCode[i] = *(unsigned int*)(hookAddress + i);
-    }
+    // Copy memory block using memcpy
+    std::memcpy(originalCode, reinterpret_cast<void*>(hookAddress), hookLength);
 
     DWORD jmpBackAddy = hookAddress + hookLength;
 
@@ -48,6 +49,11 @@ void HookSession::Hook(DWORD hookAddress, int hookLength, unsigned long* externa
 
     // Copy original code to the end of allocated memory area
     writer.WriteBytes(originalCode, hookLength);
+
+    //ADD esp, 8
+    writer.WriteByte(ADD);
+    writer.WriteByte(0xC4); 
+    writer.WriteByte(0x08);
 
     //Jump back to module code
     writer.WriteByte(JMP); //jmp
